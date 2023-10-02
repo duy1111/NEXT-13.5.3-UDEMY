@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  dev-database:
+    image: mysql:8.1.0 # Thay đổi hình ảnh MySQL phù hợp
+    container_name: lms-database
+    ports:
+      - 6000:3306 # Sử dụng cổng mặc định của MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc123456789
+      MYSQL_USER: your_username
+      MYSQL_PASSWORD: YourPassword123
+      MYSQL_DATABASE: testdb
+    networks:
+      - nestjs-network-mysql
+networks:
+  nestjs-network-mysql:
