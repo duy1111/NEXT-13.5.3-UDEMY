@@ -8,16 +8,18 @@ export async function POST(
     try{
         const {userId} = auth();
         const {title} = await req.json();
+        console.log("check")
         if(!userId){
             return new NextResponse("Unauthorized",{status:401})
         }
 
-        const course = db.course.create({
+        const course = await db.course.create({
             data:{
                 userId,
                 title
             }
         });
+        console.log(course)
 
         return NextResponse.json(course)
     }catch(error){
