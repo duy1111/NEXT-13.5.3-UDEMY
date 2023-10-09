@@ -2,13 +2,13 @@
 
 import * as z from "zod";
 import axios from "axios";
+import MuxPlayer from "@mux/mux-player-react";
 import { Button } from "@/components/ui/button";
-import { ImageIcon, Pencil, PlusCircle, Video } from "lucide-react";
+import {  Pencil, PlusCircle, Video } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Chapter, Course, MuxData } from "@prisma/client";
-import Image from "next/image";
 import { FileUpload } from "@/components/file-upload";
 
 interface ChapterVideoProps {
@@ -68,7 +68,10 @@ export const ChapterVideoForm = ({ initialData, courseId, chapterId }: ChapterVi
           </div>
         ): (
           <div className=" relative aspect-video mt-2" >
-            Video Uploaded!
+            <MuxPlayer
+              playbackId={initialData?.muxData?.playbackId || ""}
+              
+            />
           </div>
         )
       )}
